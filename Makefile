@@ -21,7 +21,7 @@ OPERATOR_SDK_VERSION ?= v1.30.0
 ENVTEST_K8S_VERSION = 1.27
 
 # IMAGE_REGISTRY used to indicate the registery/group for the operator, bundle and catalog
-IMAGE_REGISTRY ?= quay.io/medik8s
+IMAGE_REGISTRY ?= quay.io/jcanocan
 export IMAGE_REGISTRY
 
 # When no version is set, use latest as image tags
@@ -203,11 +203,11 @@ run: manifests generate fmt vet ## Run a controller from your host.
 
 .PHONY: docker-build
 docker-build: test-no-verify ## Build docker image with the manager.
-	docker build -t ${IMG} .
+	podman build -t ${IMG} .
 
 .PHONY: docker-push
 docker-push: ## Push docker image with the manager.
-	docker push ${IMG}
+	podman push ${IMG}
 
 ##@ Deployment
 

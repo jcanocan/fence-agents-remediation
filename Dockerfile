@@ -41,5 +41,7 @@ RUN dnf install -y dnf-plugins-core \
     && dnf install -y fence-agents-all fence-agents-aws fence-agents-azure-arm \
     && dnf clean all -y
 
+RUN sed -i 's/\"instanceView\"/expand=\"instanceView\"/' /usr/sbin/fence_azure_arm 
+
 USER 65532:65532
 ENTRYPOINT ["/manager"]
